@@ -1,0 +1,2 @@
+export const LOAD_CATEGORIES = "LOAD_CATEGORIES";
+export const ADD_CATEGORIES = "ADD_CATEGORIES";
