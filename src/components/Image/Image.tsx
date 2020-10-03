@@ -29,8 +29,8 @@ export default function Image(props: IImageProps) {
             className={props.className}
             src={getUrlImg(props.url)}
             alt={props.alt}
-            onLoad={(e: SyntheticEvent<EventTarget>) => handleLoad(e)}
-            onError={(e: SyntheticEvent<EventTarget>) => handleError(e)}
+            onLoad={handleLoad}
+            onError={handleError}
         ></Wrapper>
     );
 }
