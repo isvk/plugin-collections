@@ -22,9 +22,9 @@ function* loadAllAsync(services: typeof bottle, action: ReturnType<typeof loadAl
 
         yield put(addCategories(response.categories));
         yield put(addProducts(response.products));
-        yield put(addMain({ ...response.main, status: loadStatus.isLoaded }));
+        yield put(addMain({ ...response.main, status: loadStatus.loaded }));
     } catch (e) {
-        yield put(setStatus(loadStatus.isErrorServer));
+        yield put(setStatus(loadStatus.errorServer));
     }
 }
 
