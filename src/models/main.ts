@@ -10,7 +10,7 @@ export interface IMain {
 }
 
 const initialMain: IMain = {
-    status: loadStatus.isNotLoaded,
+    status: loadStatus.notLoaded,
     head_description: "",
     head_subtitle: "",
     head_title: "",

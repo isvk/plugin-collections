@@ -1,5 +1,5 @@
 export enum loadStatus {
-    isNotLoaded,
-    isLoaded,
-    isErrorServer,
+    notLoaded,
+    loaded,
+    errorServer,
 }

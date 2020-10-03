@@ -15,9 +15,9 @@ export default function MainPage() {
 
     return (
         <Wrapper>
-            {status === loadStatus.isNotLoaded && <Load />}
-            {status !== loadStatus.isLoaded && status !== loadStatus.isErrorServer && <Preload text="Загрузка..." />}
-            {status === loadStatus.isLoaded && (
+            {status === loadStatus.notLoaded && <Load />}
+            {status !== loadStatus.loaded && status !== loadStatus.errorServer && <Preload text="Загрузка..." />}
+            {status === loadStatus.loaded && (
                 <>
                     <Head />
                     <main>
@@ -26,7 +26,7 @@ export default function MainPage() {
                     </main>
                 </>
             )}
-            {status === loadStatus.isErrorServer && <Warning text="Ошибка сервера" />}
+            {status === loadStatus.errorServer && <Warning text="Ошибка сервера" />}
         </Wrapper>
     );
 }

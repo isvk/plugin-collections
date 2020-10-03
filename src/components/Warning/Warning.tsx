@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 100px;
+    padding: 100px 0;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
