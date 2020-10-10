@@ -18,9 +18,9 @@ export default function Product(props: IProductProps) {
 }
 
 const Wrapper = styled.div`
-    width: calc((100% - 6px) / 3);
-    margin-right: 3px;
-    margin-bottom: 3px;
+    width: calc((100% - 34px) / 3);
+    margin-right: 17px;
+    margin-bottom: 17px;
 
     &:nth-child(3n) {
         margin-right: 0;
@@ -28,6 +28,12 @@ const Wrapper = styled.div`
 
     &:nth-last-child(-n + 3) {
         margin-bottom: 0;
+    }
+
+    @media (max-width: 736px) {
+        width: calc((100% - 6px) / 3);
+        margin-right: 3px;
+        margin-bottom: 3px;
     }
 `;
 
