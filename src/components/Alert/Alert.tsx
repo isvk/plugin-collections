@@ -1,15 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { Warning as WarningStyledIcon } from "@styled-icons/entypo/Warning";
 import { Loader5 as LoaderStyledIcon } from "@styled-icons/remix-fill/Loader5";
 
-interface IPreloadProps {
+interface IAlertProps {
+    type: "preload" | "warning";
     text: string;
 }
 
-export default function Preload(props: IPreloadProps) {
+export default function Alert(props: IAlertProps) {
     return (
         <Wrapper>
-            <LoaderIcon size="28" /> {props.text}
+            {props.type === "preload" && (
+                <>
+                    <LoaderIcon size="28" /> {props.text}
+                </>
+            )}
+            {props.type === "warning" && (
+                <>
+                    <WarningIcon size="28" /> {props.text}
+                </>
+            )}
         </Wrapper>
     );
 }
@@ -18,7 +29,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 100px;
+    padding: 50% 0;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -35,4 +46,8 @@ const LoaderIcon = styled(LoaderStyledIcon)`
             transform: rotate(360deg);
         }
     }
+`;
+
+const WarningIcon = styled(WarningStyledIcon)`
+    color: #ff0000;
 `;

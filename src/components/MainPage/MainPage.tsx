@@ -5,8 +5,7 @@ import useCustomDispatch from "src/hooks/useCustomDispatch";
 import { mainGetStatus } from "src/store/rootSelector";
 import { loadStatus } from "src/store/loadStatus";
 import { loadAll } from "src/store/main/actions";
-import Preload from "src/components/Preload/Preload";
-import Warning from "src/components/Warning/Warning";
+import Alert from "src/components/Alert/Alert";
 import Head from "src/components/Head/Head";
 import ListCategories from "src/components/ListCategories/ListCategories";
 import ListProducts from "src/components/ListProducts/ListProducts";
@@ -22,8 +21,8 @@ export default function MainPage() {
 
     return (
         <Wrapper>
-            {status === loadStatus.notLoaded && <Preload text="Загрузка..." />}
-            {status === loadStatus.errorServer && <Warning text="Ошибка сервера" />}
+            {status === loadStatus.notLoaded && <Alert type="preload" text="Загрузка..." />}
+            {status === loadStatus.errorServer && <Alert type="warning" text="Ошибка сервера" />}
             {status === loadStatus.loaded && (
                 <>
                     <Head />
