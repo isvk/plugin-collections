@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import styled from "styled-components";
 import useCustomSelector from "src/hooks/useCustomSelector";
 import useEventListener from "src/hooks/useEventListener";
@@ -12,59 +12,63 @@ export default function ListCategories() {
     const categories = useCustomSelector(categoryState);
     const refWrapper = useRef<HTMLDivElement>(null);
     const [state, dispatch] = useReducer(reducer, { left: false, right: false });
+    const isTouchDevice = window.matchMedia("(pointer:fine)").matches;
+    const scrollWidth = 134 * 4;
 
-    const drawArrows = () => {
-        if (refWrapper.current && window.matchMedia("(pointer:fine)").matches) {
-            dispatch({ type: "setLeft", value: refWrapper.current.scrollLeft > 0 });
-            dispatch({
-                type: "setRight",
-                value: refWrapper.current.scrollWidth - refWrapper.current.offsetWidth > refWrapper.current.scrollLeft,
-            });
+    const drawArrows = useCallback(() => {
+        if (refWrapper.current && isTouchDevice) {
+            dispatch(actions.setLeft(refWrapper.current.scrollLeft > 0));
+            dispatch(
+                actions.setRight(
+                    refWrapper.current.scrollWidth - refWrapper.current.offsetWidth > refWrapper.current.scrollLeft
+                )
+            );
         } else {
-            dispatch({ type: "setLeft", value: false });
-            dispatch({ type: "setRight", value: false });
+            dispatch(actions.setLeft(false));
+            dispatch(actions.setRight(false));
         }
-    };
+    }, [isTouchDevice]);
 
-    const handleScroll = (direction: number) => {
-        if (refWrapper.current !== null) {
+    const handleScroll = useCallback((direction: number) => {
+        if (refWrapper.current) {
             refWrapper.current.scrollTo({
                 left: refWrapper.current.scrollLeft + direction,
                 behavior: "smooth",
             });
         }
-    };
+    }, []);
 
     useEventListener("resize", drawArrows);
 
     useEffect(() => {
         drawArrows();
+        // eslint-disable-next-line
     }, []);
 
     return (
-        <Wrapper onScroll={() => drawArrows()}>
+        <Wrapper onScroll={drawArrows}>
             {state.left && (
                 <ButtonLeftArrow>
-                    <LeftArrow size="20" onClick={() => handleScroll(-132 * 4)} />
+                    <LeftArrow size="20" onClick={() => handleScroll(-scrollWidth)} />
                 </ButtonLeftArrow>
             )}
 
             <WrapperListCategory ref={refWrapper}>
-                {categories.map((category, index) => (
+                {categories.map((category) => (
                     <Category category={category} key={category.id} />
                 ))}
             </WrapperListCategory>
 
             {state.right && (
                 <ButtonRightArrow>
-                    <RightArrow size="20" onClick={() => handleScroll(132 * 4)} />
+                    <RightArrow size="20" onClick={() => handleScroll(scrollWidth)} />
                 </ButtonRightArrow>
             )}
         </Wrapper>
     );
 }
 
-function reducer(state: { left: boolean; right: boolean }, action: { type: string; value: boolean }) {
+const reducer = (state: { left: boolean; right: boolean }, action: { type: string; value: boolean }) => {
     switch (action.type) {
         case "setLeft":
             return state.left !== action.value ? { ...state, left: action.value } : state;
@@ -73,7 +77,22 @@ function reducer(state: { left: boolean; right: boolean }, action: { type: strin
         default:
             throw new Error();
     }
-}
+};
+
+const actions = {
+    setLeft: (value: boolean) => {
+        return {
+            type: "setLeft",
+            value: value,
+        };
+    },
+    setRight: (value: boolean) => {
+        return {
+            type: "setRight",
+            value: value,
+        };
+    },
+};
 
 const Wrapper = styled.div`
     display: flex;
