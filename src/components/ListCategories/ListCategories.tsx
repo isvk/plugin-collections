@@ -3,10 +3,8 @@ import styled from "styled-components";
 import useCustomSelector from "src/hooks/useCustomSelector";
 import useEventListener from "src/hooks/useEventListener";
 import { categoryState } from "src/store/rootSelector";
+import ButtonArrow from "src/components/ButtonArrow/ButtonArrow";
 import Category from "./Category/Category";
-import { ChevronCircleLeft as LeftArrowStyledIcon } from "@styled-icons/fa-solid/ChevronCircleLeft";
-import { ChevronCircleRight as RightArrowStyledIcon } from "@styled-icons/fa-solid/ChevronCircleRight";
-import "focus-visible";
 
 export default function ListCategories() {
     const categories = useCustomSelector(categoryState);
@@ -47,11 +45,7 @@ export default function ListCategories() {
 
     return (
         <Wrapper onScroll={drawArrows}>
-            {state.left && (
-                <ButtonLeftArrow>
-                    <LeftArrow size="20" onClick={() => handleScroll(-scrollWidth)} />
-                </ButtonLeftArrow>
-            )}
+            {state.left && <ButtonArrow type={"left"} handleScroll={handleScroll} scrollWidth={-scrollWidth} />}
 
             <WrapperListCategory ref={refWrapper}>
                 {categories.map((category) => (
@@ -59,11 +53,7 @@ export default function ListCategories() {
                 ))}
             </WrapperListCategory>
 
-            {state.right && (
-                <ButtonRightArrow>
-                    <RightArrow size="20" onClick={() => handleScroll(scrollWidth)} />
-                </ButtonRightArrow>
-            )}
+            {state.right && <ButtonArrow type={"right"} handleScroll={handleScroll} scrollWidth={scrollWidth} />}
         </Wrapper>
     );
 }
@@ -100,34 +90,6 @@ const Wrapper = styled.div`
     user-select: none;
     flex-wrap: wrap;
     position: relative;
-`;
-
-const ButtonArrow = styled.button`
-    display: block;
-    position: absolute;
-    top: 53px;
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    background: unset;
-
-    &:focus:not(.focus-visible) {
-        outline: none;
-    }
-`;
-
-const ButtonLeftArrow = styled(ButtonArrow)``;
-
-const ButtonRightArrow = styled(ButtonArrow)`
-    right: 0;
-`;
-
-const LeftArrow = styled(LeftArrowStyledIcon)`
-    color: #aaa;
-`;
-
-const RightArrow = styled(RightArrowStyledIcon)`
-    color: #aaa;
 `;
 
 const WrapperListCategory = styled.div`
