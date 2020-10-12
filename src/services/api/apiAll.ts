@@ -30,7 +30,17 @@ export default class ApiAll {
                     {id url}
                 name
                 link
-                img
+                img_webp_150
+                    {url}
+                img_webp_300
+                    {url}
+                img_webp_600
+                    {url}
+                img_jpeg_150
+                    {url} 
+                img_jpeg_300
+                    {url}
+                img_jpeg_600
                     {url}
             }
         }`,

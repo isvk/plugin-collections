@@ -7,7 +7,12 @@ export interface IProduct {
     category: null | { id: Category["id"]; url: Category["url"] };
     name: string;
     link: string;
-    img: null | { url: string };
+    img_webp_150: { url: string } | null;
+    img_webp_300: { url: string } | null;
+    img_webp_600: { url: string } | null;
+    img_jpeg_150: { url: string } | null;
+    img_jpeg_300: { url: string } | null;
+    img_jpeg_600: { url: string } | null;
 }
 
 const initialProduct: IProduct = {
@@ -16,7 +21,12 @@ const initialProduct: IProduct = {
     name: "",
     link: "",
     category: null,
-    img: null,
+    img_webp_150: null,
+    img_webp_300: null,
+    img_webp_600: null,
+    img_jpeg_150: null,
+    img_jpeg_300: null,
+    img_jpeg_600: null,
 };
 
 export default class Product extends Record(initialProduct) implements IProduct {}

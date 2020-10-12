@@ -5,6 +5,13 @@ interface IImageProps {
     url: string | undefined;
     alt?: string;
     className?: string;
+    sources?: ISource[];
+}
+
+export interface ISource {
+    srcSet: string | undefined;
+    type: string;
+    media?: string;
 }
 
 export enum imageStatus {
@@ -16,13 +23,7 @@ export enum imageStatus {
 export default function Image(props: IImageProps) {
     const [status, setStatus] = useState(imageStatus.notLoaded);
 
-    const getUrlImg = (url: string | undefined, status: imageStatus) => {
-        if (url && url.length && status !== imageStatus.errorServer)
-            return (process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "/api") + url;
-        else return process.env.PUBLIC_URL + "/notfound.svg";
-    };
-
-    return (
+    const Img = (
         <Wrapper
             className={props.className}
             src={getUrlImg(props.url, status)}
@@ -30,9 +31,42 @@ export default function Image(props: IImageProps) {
             status={status}
             onLoad={() => setStatus(status === imageStatus.errorServer ? imageStatus.errorServer : imageStatus.loaded)}
             onError={() => setStatus(imageStatus.errorServer)}
-        ></Wrapper>
+        />
+    );
+
+    return (
+        <>
+            {props.sources?.length ? (
+                <picture>
+                    {props.sources.map(
+                        (source: ISource, index: number) =>
+                            source.srcSet && (
+                                <source srcSet={source.srcSet} type={source.type} media={source.media} key={index} />
+                            )
+                    )}
+                    {Img}
+                </picture>
+            ) : (
+                Img
+            )}
+        </>
     );
 }
+
+const getUrlImg = (url: string | undefined, status: imageStatus = imageStatus.loaded) => {
+    if (url && url.length && status !== imageStatus.errorServer)
+        return (process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "/api") + url;
+    else return process.env.PUBLIC_URL + "/notfound.svg";
+};
+
+export const getSrcSet = (x1: string | undefined, x2: string | undefined) => {
+    const result = [];
+
+    if (x1) result.push(getUrlImg(x1) + " 1x");
+    if (x2) result.push(getUrlImg(x2) + " 2x");
+
+    return result.length ? result.join(", ") : undefined;
+};
 
 const Wrapper = styled.img`
     background: ${(props: { status: imageStatus }) => {

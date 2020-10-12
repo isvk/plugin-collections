@@ -6,5 +6,10 @@ export interface IApiProduct {
     category: null | { id: IApiCategory["id"]; url: IApiCategory["url"] };
     name: string;
     link: string;
-    img: null | { url: string };
+    img_webp_150: { url: string } | null;
+    img_webp_300: { url: string } | null;
+    img_webp_600: { url: string } | null;
+    img_jpeg_150: { url: string } | null;
+    img_jpeg_300: { url: string } | null;
+    img_jpeg_600: { url: string } | null;
 }
