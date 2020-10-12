@@ -11,7 +11,11 @@ export default function Product(props: IProductProps) {
     return (
         <Wrapper>
             <LinkProduct href={props.product.link}>
-                <ImageStyled url={props.product.img_jpeg_300?.url} sources={getSourcesForProduct(props.product)} />
+                <ImageStyled
+                    url={props.product.img_jpeg_300?.url}
+                    sources={getSourcesForProduct(props.product)}
+                    alt={props.product.name}
+                />
             </LinkProduct>
         </Wrapper>
     );

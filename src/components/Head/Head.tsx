@@ -10,7 +10,7 @@ export default function Head() {
     return (
         <Wrapper>
             <WrapperLogo>
-                <ImageStyled url={main.head_logo?.url} />
+                <ImageStyled url={main.head_logo?.url} alt="Logo" />
             </WrapperLogo>
             <Text>
                 <Title>{main.head_title}</Title>
