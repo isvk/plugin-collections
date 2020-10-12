@@ -5,7 +5,7 @@ export interface ICategory {
     sort: number;
     url: string;
     name: string;
-    img: null | { url: string };
+    img: { url: string } | null;
 }
 
 const initialCategory: ICategory = {

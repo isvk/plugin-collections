@@ -3,5 +3,5 @@ export interface IApiCategory {
     sort: number;
     url: string;
     name: string;
-    img: null | { url: string };
+    img: { url: string } | null;
 }

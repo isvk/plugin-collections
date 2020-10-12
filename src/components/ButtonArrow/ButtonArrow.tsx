@@ -6,7 +6,7 @@ import "focus-visible";
 
 interface IButtonArrowProps {
     type: "left" | "right";
-    handleScroll: any;
+    handleScroll: (direction: number) => void;
     scrollWidth: number;
 }
 

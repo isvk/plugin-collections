@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 interface IImageProps {
-    url: string | undefined;
+    url?: string;
     alt?: string;
     className?: string;
     sources?: ISource[];
 }
 
 export interface ISource {
-    srcSet: string | undefined;
-    type: string;
+    srcSet?: string;
+    type?: string;
     media?: string;
 }
 
@@ -53,13 +53,13 @@ export default function Image(props: IImageProps) {
     );
 }
 
-const getUrlImg = (url: string | undefined, status: imageStatus = imageStatus.loaded) => {
+const getUrlImg = (url?: string, status: imageStatus = imageStatus.loaded) => {
     if (url && url.length && status !== imageStatus.errorServer)
         return (process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "/api") + url;
     else return process.env.PUBLIC_URL + "/notfound.svg";
 };
 
-export const getSrcSet = (x1: string | undefined, x2: string | undefined) => {
+export const getSrcSet = (x1?: string, x2?: string) => {
     const result = [];
 
     if (x1) result.push(getUrlImg(x1) + " 1x");

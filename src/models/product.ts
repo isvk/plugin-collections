@@ -4,7 +4,7 @@ import Category from "./category";
 export interface IProduct {
     id: number;
     created_at: string;
-    category: null | { id: Category["id"]; url: Category["url"] };
+    category: { id: Category["id"]; url: Category["url"] } | null;
     name: string;
     link: string;
     img_webp_150: { url: string } | null;

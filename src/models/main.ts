@@ -6,7 +6,7 @@ export interface IMain {
     head_description: string;
     head_subtitle: string;
     head_title: string;
-    head_logo: null | { url: string };
+    head_logo: { url: string } | null;
 }
 
 const initialMain: IMain = {
