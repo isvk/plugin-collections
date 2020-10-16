@@ -17,7 +17,7 @@ export default function Category(props: ICategoryProps) {
         <Wrapper>
             <LinkCategory to={props.category.url === currentCategory ? "/" : "/category/" + props.category.url}>
                 <Border selected={props.category.url === currentCategory}>
-                    <ImageStyled url={props.category.img?.url} alt={props.category.name}></ImageStyled>
+                    <ImageStyled url={props.category.img?.url} alt={props.category.name} />
                 </Border>
                 <Name>{props.category.name}</Name>
             </LinkCategory>
@@ -26,11 +26,11 @@ export default function Category(props: ICategoryProps) {
 }
 
 const Wrapper = styled.div`
-    width: 86px;
-    padding: 30px 23px;
     flex: 0 0 auto;
+    width: 82px;
+    padding: 30px 23px;
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile}px) {
         width: 64px;
         padding: 5px;
     }
@@ -42,17 +42,25 @@ const LinkCategory = styled(Link)`
     text-decoration: none;
 `;
 
-const ImageStyled = styled(Image)`
-    width: 76px;
-    height: 76px;
-    border: 3px solid #ffffff;
-    border-radius: 41px;
+const Border = styled.div`
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding: 50%;
+    background-color: #fff;
+    border: 1px solid ${(props: { selected: boolean }) => (props.selected ? "#ff0000" : "#cccccc")};
+    border-radius: 50%;
+`;
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
-        width: 56px;
-        height: 56px;
-        border-radius: 31px;
-    }
+const ImageStyled = styled(Image)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
 `;
 
 const Name = styled.div`
@@ -61,22 +69,4 @@ const Name = styled.div`
     line-height: 25px;
     white-space: nowrap;
     overflow: hidden;
-`;
-
-const Border = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 82px;
-    height: 82px;
-
-    background-color: #fff;
-    border: 1px solid ${(props: { selected: boolean }) => (props.selected ? "#ff0000" : "#cccccc")};
-    border-radius: 42px;
-
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
-        width: 62px;
-        height: 62px;
-        border-radius: 32px;
-    }
 `;
