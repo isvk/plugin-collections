@@ -16,7 +16,7 @@ export default function Head() {
             <Text>
                 <Title>{main.head_title}</Title>
                 <Subtitle>{main.head_subtitle}</Subtitle>
-                <Description dangerouslySetInnerHTML={{ __html: main.head_description }}></Description>
+                <Description dangerouslySetInnerHTML={{ __html: main.head_description }} />
             </Text>
         </Wrapper>
     );
