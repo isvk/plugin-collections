@@ -11,11 +11,10 @@ interface ICategoryProps {
 
 export default function Category(props: ICategoryProps) {
     const { urlCategory } = useParams();
-    const getUrlCategory = (url: string) => (url === urlCategory ? "/" : "/category/" + url);
 
     return (
         <Wrapper>
-            <LinkCategory to={() => getUrlCategory(props.category.url)}>
+            <LinkCategory to={props.category.url === urlCategory ? "/" : "/category/" + props.category.url}>
                 <Border theme={props.category.url === urlCategory ? "selected" : "default"}>
                     <ImageStyled url={props.category.img?.url} alt={props.category.name}></ImageStyled>
                 </Border>
