@@ -32,7 +32,7 @@ const Wrapper = styled.header`
 const WrapperLogo = styled.div`
     padding: 30px 100px 30px 70px;
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile}px) {
         padding: 10px;
     }
 `;
@@ -44,7 +44,7 @@ const ImageStyled = styled(Image)`
     border-radius: 60px;
     border: 1px solid #ccc;
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile}px) {
         width: 60px;
         height: 60px;
         border-radius: 30px;

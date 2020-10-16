@@ -54,7 +54,7 @@ const Wrapper = styled.div`
     font-size: 16px;
     background-color: #fafafa;
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile}px) {
         font-size: 14px;
     }
 `;
