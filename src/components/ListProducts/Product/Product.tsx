@@ -45,23 +45,29 @@ const getSourcesForProduct = (product: ProductModel) => {
     ].filter((source: ISource) => source.srcSet);
 };
 
-const Wrapper = styled.div`
-    width: calc((100% - 34px) / 3);
-    margin-right: 17px;
-    margin-bottom: 17px;
+const config = {
+    numberInRow: 3,
+    indentForDesktop: 17,
+    indentForMobile: 3,
+};
 
-    &:nth-child(3n) {
+const Wrapper = styled.div`
+    width: calc((100% - ${config.indentForDesktop * (config.numberInRow - 1)}px) / ${config.numberInRow});
+    margin-right: ${config.indentForDesktop}px;
+    margin-bottom: ${config.indentForDesktop}px;
+
+    &:nth-child(${config.numberInRow}n) {
         margin-right: 0;
     }
 
-    &:nth-last-child(-n + 3) {
+    &:nth-last-child(-n + ${config.numberInRow}) {
         margin-bottom: 0;
     }
 
-    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
-        width: calc((100% - 6px) / 3);
-        margin-right: 3px;
-        margin-bottom: 3px;
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile}px) {
+        width: calc((100% - ${config.indentForMobile * (config.numberInRow - 1)}px) / ${config.numberInRow});
+        margin-right: ${config.indentForMobile}px;
+        margin-bottom: ${config.indentForMobile}px;
     }
 `;
 
