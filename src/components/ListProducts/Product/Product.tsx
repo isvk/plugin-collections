@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ProductModel from "src/models/product";
 import Image, { getSrcSet, ISource } from "src/components/Image/Image";
+import { IThemeProps } from "src/components/MainPage/MainPage";
 
 interface IProductProps {
     product: ProductModel;
@@ -57,7 +58,7 @@ const Wrapper = styled.div`
         margin-bottom: 0;
     }
 
-    @media (max-width: 736px) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
         width: calc((100% - 6px) / 3);
         margin-right: 3px;
         margin-bottom: 3px;

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import CategoryModel from "src/models/category";
 import { Link } from "react-router-dom";
 import Image from "src/components/Image/Image";
+import { IThemeProps } from "src/components/MainPage/MainPage";
 
 interface ICategoryProps {
     category: CategoryModel;
@@ -29,7 +30,7 @@ const Wrapper = styled.div`
     padding: 30px 23px;
     flex: 0 0 auto;
 
-    @media (max-width: 736px) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
         width: 64px;
         padding: 5px;
     }
@@ -47,7 +48,7 @@ const ImageStyled = styled(Image)`
     border: 3px solid #ffffff;
     border-radius: 41px;
 
-    @media (max-width: 736px) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
         width: 56px;
         height: 56px;
         border-radius: 31px;
@@ -73,7 +74,7 @@ const Border = styled.div`
     border: 1px solid ${(props: { selected: boolean }) => (props.selected ? "#ff0000" : "#cccccc")};
     border-radius: 42px;
 
-    @media (max-width: 736px) {
+    @media (max-width: ${(props: IThemeProps) => props.theme.media_mobile + "px"}) {
         width: 62px;
         height: 62px;
         border-radius: 32px;
