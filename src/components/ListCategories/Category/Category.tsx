@@ -15,7 +15,7 @@ export default function Category(props: ICategoryProps) {
     return (
         <Wrapper>
             <LinkCategory to={props.category.url === currentCategory ? "/" : "/category/" + props.category.url}>
-                <Border theme={props.category.url === currentCategory}>
+                <Border selected={props.category.url === currentCategory}>
                     <ImageStyled url={props.category.img?.url} alt={props.category.name}></ImageStyled>
                 </Border>
                 <Name>{props.category.name}</Name>
@@ -70,7 +70,7 @@ const Border = styled.div`
     height: 82px;
 
     background-color: #fff;
-    border: 1px solid ${(props: { theme: string }) => (props.theme === "selected" ? "#ff0000" : "#cccccc")};
+    border: 1px solid ${(props: { selected: boolean }) => (props.selected ? "#ff0000" : "#cccccc")};
     border-radius: 42px;
 
     @media (max-width: 736px) {
