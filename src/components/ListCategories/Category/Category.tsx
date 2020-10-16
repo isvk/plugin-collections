@@ -10,12 +10,12 @@ interface ICategoryProps {
 }
 
 export default function Category(props: ICategoryProps) {
-    const { urlCategory } = useParams();
+    const { urlCategory: currentCategory } = useParams();
 
     return (
         <Wrapper>
-            <LinkCategory to={props.category.url === urlCategory ? "/" : "/category/" + props.category.url}>
-                <Border theme={props.category.url === urlCategory ? "selected" : "default"}>
+            <LinkCategory to={props.category.url === currentCategory ? "/" : "/category/" + props.category.url}>
+                <Border theme={props.category.url === currentCategory}>
                     <ImageStyled url={props.category.img?.url} alt={props.category.name}></ImageStyled>
                 </Border>
                 <Name>{props.category.name}</Name>
