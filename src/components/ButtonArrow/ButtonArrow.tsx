@@ -34,6 +34,7 @@ const ButtonArrowStyled = styled.button`
     cursor: pointer;
     border: none;
     background: unset;
+    z-index: 10;
 
     &:focus:not(.focus-visible) {
         outline: none;
@@ -48,8 +49,12 @@ const ButtonRightArrow = styled(ButtonArrowStyled)`
 
 const LeftArrow = styled(LeftArrowStyledIcon)`
     color: #aaa;
+    background-color: #fff;
+    border-radius: 50%;
 `;
 
 const RightArrow = styled(RightArrowStyledIcon)`
     color: #aaa;
+    background-color: #fff;
+    border-radius: 50%;
 `;
