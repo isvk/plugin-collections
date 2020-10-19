@@ -2,7 +2,7 @@ import { IHttp } from "./IHttp";
 
 export default class Http implements IHttp {
     getFetch = (textQuery: { query: string }) => {
-        return fetch(process.env.NODE_ENV === "development" ? "http://localhost:1337/graphql" : "/api/graphql", {
+        return fetch("/api/graphql", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",

@@ -54,11 +54,9 @@ export default function Image(props: IImageProps) {
 }
 
 const getUrlImg = (url?: string, status: imageStatus = imageStatus.loaded) => {
-    if (url && url.length && status !== imageStatus.errorServer) {
-        return (process.env.NODE_ENV === "development" ? "" : "/api") + url;
-    } else {
-        return process.env.PUBLIC_URL + "/notfound.svg";
-    }
+    return url && url.length && status !== imageStatus.errorServer
+        ? "/api" + url
+        : process.env.PUBLIC_URL + "/notfound.svg";
 };
 
 export const getSrcSet = (x1?: string, x2?: string) => {
