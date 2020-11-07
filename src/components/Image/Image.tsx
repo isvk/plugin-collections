@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import * as packageJson from "../../../package.json";
 
 interface IImageProps {
     url?: string;
@@ -55,7 +56,7 @@ export default function Image(props: IImageProps) {
 
 const getUrlImg = (url?: string, status: imageStatus = imageStatus.loaded) => {
     return url && url.length && status !== imageStatus.errorServer
-        ? "/api" + url
+        ? packageJson.homepage + "api" + url
         : process.env.PUBLIC_URL + "/notfound.svg";
 };
 
@@ -72,7 +73,7 @@ const Wrapper = styled.img`
     background: ${(props: { status: imageStatus }) => {
         switch (props.status) {
             case imageStatus.notLoaded:
-                return "url(" + process.env.PUBLIC_URL + "preloader.svg) no-repeat center";
+                return "url(" + process.env.PUBLIC_URL + packageJson.homepage + "preloader.svg) no-repeat center";
             case imageStatus.loaded:
             case imageStatus.errorServer:
             default:
