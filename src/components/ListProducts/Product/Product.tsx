@@ -16,6 +16,7 @@ export default function Product(props: IProductProps) {
                     url={props.product.img_jpeg_300?.url}
                     sources={getSourcesForProduct(props.product)}
                     alt={props.product.name}
+                    preloader={true}
                 />
             </LinkProduct>
         </Wrapper>

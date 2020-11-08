@@ -7,6 +7,7 @@ interface IImageProps {
     alt?: string;
     className?: string;
     sources?: ISource[];
+    preloader?: boolean;
 }
 
 export interface ISource {
@@ -30,6 +31,7 @@ export default function Image(props: IImageProps) {
             src={getUrlImg(props.url, status)}
             alt={props.alt}
             status={status}
+            preloader={props.preloader}
             onLoad={() => setStatus(status === imageStatus.errorServer ? imageStatus.errorServer : imageStatus.loaded)}
             onError={() => setStatus(imageStatus.errorServer)}
         />
@@ -70,10 +72,12 @@ export const getSrcSet = (x1?: string, x2?: string) => {
 };
 
 const Wrapper = styled.img`
-    background: ${(props: { status: imageStatus }) => {
+    background: ${(props: { status: imageStatus; preloader: boolean | undefined }) => {
         switch (props.status) {
             case imageStatus.notLoaded:
-                return "url(" + process.env.PUBLIC_URL + packageJson.homepage + "preloader.svg) no-repeat center";
+                return props.preloader
+                    ? "url(" + process.env.PUBLIC_URL + packageJson.homepage + "preloader.svg) no-repeat center"
+                    : "#ffffff";
             case imageStatus.loaded:
             case imageStatus.errorServer:
             default:
