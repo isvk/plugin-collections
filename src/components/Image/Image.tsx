@@ -76,7 +76,7 @@ const Wrapper = styled.img`
         switch (props.status) {
             case imageStatus.notLoaded:
                 return props.preloader
-                    ? "url(" + process.env.PUBLIC_URL + packageJson.homepage + "preloader.svg) no-repeat center"
+                    ? "url(" + process.env.PUBLIC_URL + "/preloader.svg) no-repeat center"
                     : "#ffffff";
             case imageStatus.loaded:
             case imageStatus.errorServer:
